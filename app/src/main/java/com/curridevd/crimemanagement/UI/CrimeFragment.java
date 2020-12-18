@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,13 +31,16 @@ public class CrimeFragment extends Fragment {
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
 							 @Nullable Bundle savedInstanceState) {
 		binding = FragmentCrimeBinding.inflate(inflater, container,false);
-		View view = binding.getRoot();
-		return view;
+		initView();
+		initListener();
+		return binding.getRoot();
 	}
 
 	protected void initView()
 	{
-		//mCrime = new Crime();
+		String dateDisplay = mCrime.getDate().toString();
+		binding.fragmentDate.setText(dateDisplay);
+		binding.fragmentDate.setEnabled(false);
 	}
 
 	protected void initListener()
@@ -55,6 +59,13 @@ public class CrimeFragment extends Fragment {
 			@Override
 			public void afterTextChanged(Editable editable) {
 
+			}
+		});
+
+		binding.fragmentSolvedBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				mCrime.setSolved(b);
 			}
 		});
 	}

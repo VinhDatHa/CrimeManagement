@@ -11,7 +11,7 @@ public class Crime {
 	private boolean isSolved;
 
 	public Date getDate() {
-		return mDate;
+		return this.mDate;
 	}
 
 	public void setDate(Date mDate) {
@@ -31,7 +31,7 @@ public class Crime {
 		this.mTitle = mTitle;
 	}
 
-	public Crime (){
+	public Crime() {
 		this.mID = UUID.randomUUID();
 		this.mDate = new Date();
 	}
